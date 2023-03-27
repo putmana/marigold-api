@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Models\Playlist;
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,10 +14,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('artists', function (Blueprint $table) {
+        Schema::create('playlist_covers', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class);
-            $table->string('name');
+            $table->foreignIdFor(Playlist::class);
+            $table->string('color'); // FORMAT: r.g.b&r.g.b
+            $table->string('path');
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('artists');
+        Schema::dropIfExists('playlist_covers');
     }
 };

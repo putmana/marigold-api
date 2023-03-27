@@ -1,6 +1,7 @@
 <?php
 
-use App\Models\User;
+use App\Models\Track;
+use App\Models\Artist;
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,19 +14,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('artists', function (Blueprint $table) {
-            $table->id();
-            $table->foreignIdFor(User::class);
-            $table->string('name');
+        Schema::create('tracks_artists', function (Blueprint $table) {
+            $table->foreignIdFor(Track::class);
+            $table->foreignIdFor(Artist::class);
+            $table->integer('priority');
             $table->timestamps();
         });
     }
 
-    /**
+    /**art
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('artists');
+        Schema::dropIfExists('tracks_artists');
     }
 };

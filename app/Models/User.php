@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -41,4 +42,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function tracks(): HasMany {
+        return $this->hasMany(Track::class);
+    }
+
+    public function playlists(): HasMany {
+        return $this->hasMany(Playlist::class);
+    }
+
+    public function albums(): HasMany {
+        return $this->hasMany(Album::class);
+    }
+
+    public function artists(): HasMany {
+        return $this->hasMany(Artist::class);
+    }
 }

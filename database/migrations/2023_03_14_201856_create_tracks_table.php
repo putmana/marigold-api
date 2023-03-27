@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\User;
+use App\Models\Album;
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,6 +16,12 @@ return new class extends Migration
     {
         Schema::create('tracks', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(Album::class);
+            $table->integer('album_index');
+            $table->string('title');
+            $table->integer('duration');
+            $table->string('path');
             $table->timestamps();
         });
     }
