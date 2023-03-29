@@ -156,7 +156,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1,
             'album_id' => 3,
             'album_index' => 1,
-            'title' => "Marigolds",
+            'title' => "Two Time",
             'duration' => 138,
             'path' => "./audio/test/tracks/jack_stauber_two_time.mp3"
         ]);
