@@ -38,6 +38,11 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1,
             'name' => "Jack Stauber"
         ]);
+        DB::table('artists')->insert([
+            'id' => 4,
+            'user_id' => 1,
+            'name' => "Modest Mouse"
+        ]);
 
         // <---- ALBUMS ---->
         DB::table('albums')->insert([
@@ -64,6 +69,14 @@ class DatabaseSeeder extends Seeder
             'category' => "Single",
             'release_year' => "2017"
         ]);
+        DB::table('albums')->insert([
+            'id' => 4,
+            'user_id' => 1,
+            'album_cover_id' => 4,
+            'title' => "Night on the Sun",
+            'category' => "EP",
+            'release_year' => "1999"
+        ]);
 
         // <---- ALBUM - ARTIST PIVOT ---->
         DB::table('album_artist')->insert([
@@ -79,6 +92,11 @@ class DatabaseSeeder extends Seeder
         DB::table('album_artist')->insert([
             'album_id' => 3,
             'artist_id' => 3,
+            'priority' => 1
+        ]);
+        DB::table('album_artist')->insert([
+            'album_id' => 4,
+            'artist_id' => 4,
             'priority' => 1
         ]);
 
@@ -103,6 +121,13 @@ class DatabaseSeeder extends Seeder
             'album_id' => 3,
             'color' => "192.175.171&74.41.58",
             'path' => "./img/test/covers/two_time.jpeg"
+        ]);
+        DB::table('album_covers')->insert([
+            'id' => 4,
+            'user_id' => 1,
+            'album_id' => 4,
+            'color' => "192.175.171&74.41.58",
+            'path' => "./img/test/covers/night_on_the_sun.jpeg"
         ]);
 
         // <---- TRACKS ---->
@@ -160,6 +185,15 @@ class DatabaseSeeder extends Seeder
             'duration' => 138,
             'path' => "./audio/test/tracks/jack_stauber_two_time.mp3"
         ]);
+        DB::table('tracks')->insert([
+            'id' => 7,
+            'user_id' => 1,
+            'album_id' => 4,
+            'album_index' => 1,
+            'title' => "Night on the Sun",
+            'duration' => 561,
+            'path' => "./audio/test/tracks/modest_mouse_night_on_the_sun.mp3"
+        ]);
 
         // <---- ARTIST - TRACK PIVOT ---->
         DB::table('artist_track')->insert([
@@ -192,6 +226,11 @@ class DatabaseSeeder extends Seeder
             'artist_id' => 3,
             'priority' => 1
         ]);
+        DB::table('artist_track')->insert([
+            'track_id' => 7,
+            'artist_id' => 4,
+            'priority' => 1
+        ]);
 
         // <---- PLAYLISTS ---->
         DB::table('playlists')->insert([
@@ -222,6 +261,11 @@ class DatabaseSeeder extends Seeder
             'track_id' => 6,
             'playlist_id' => 1,
             'position' => 4
+        ]);
+        DB::table('playlist_track')->insert([
+            'track_id' => 7,
+            'playlist_id' => 1,
+            'position' => 5
         ]);
 
         // <---- PLAYLIST COVERS ---->
