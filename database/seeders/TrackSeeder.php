@@ -12,6 +12,6 @@ class TrackSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+
     }
 }
