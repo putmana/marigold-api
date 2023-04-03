@@ -4,6 +4,6 @@
         <title>Marigold API</title>
     </head>
     <body>  
-        <h3>Footsteps...</h3>
+        <h3>Marigolds...</h3>
     </body>
 </html>
