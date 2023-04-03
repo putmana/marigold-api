@@ -126,7 +126,7 @@ class DatabaseSeeder extends Seeder
             'id' => 4,
             'user_id' => 1,
             'album_id' => 4,
-            'color' => "192.175.171&74.41.58",
+            'color' => "203.109.93&9.22.38",
             'path' => "./img/test/covers/night_on_the_sun.jpeg"
         ]);
 
