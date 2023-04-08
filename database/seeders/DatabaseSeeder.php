@@ -43,6 +43,11 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1,
             'name' => "Modest Mouse"
         ]);
+        DB::table('artists')->insert([
+            'id' => 5,
+            'user_id' => 1,
+            'name' => "Oneeva"
+        ]);
 
         // <---- ALBUMS ---->
         DB::table('albums')->insert([
@@ -77,6 +82,14 @@ class DatabaseSeeder extends Seeder
             'category' => "EP",
             'release_year' => "1999"
         ]);
+        DB::table('albums')->insert([
+            'id' => 5,
+            'user_id' => 1,
+            'album_cover_id' => 5,
+            'title' => "Platform 9",
+            'category' => "Single",
+            'release_year' => "2017"
+        ]);
 
         // <---- ALBUM - ARTIST PIVOT ---->
         DB::table('album_artist')->insert([
@@ -97,6 +110,11 @@ class DatabaseSeeder extends Seeder
         DB::table('album_artist')->insert([
             'album_id' => 4,
             'artist_id' => 4,
+            'priority' => 1
+        ]);
+        DB::table('album_artist')->insert([
+            'album_id' => 5,
+            'artist_id' => 5,
             'priority' => 1
         ]);
 
@@ -128,6 +146,13 @@ class DatabaseSeeder extends Seeder
             'album_id' => 4,
             'color' => "203.109.93&9.22.38",
             'path' => "./img/test/covers/night_on_the_sun.jpeg"
+        ]);
+        DB::table('album_covers')->insert([
+            'id' => 5,
+            'user_id' => 1,
+            'album_id' => 5,
+            'color' => "195.192.197&16.29.41",
+            'path' => "./img/test/covers/platform_9.jpeg"
         ]);
 
         // <---- TRACKS ---->
@@ -194,6 +219,15 @@ class DatabaseSeeder extends Seeder
             'duration' => 561,
             'path' => "./audio/test/tracks/modest_mouse_night_on_the_sun.mp3"
         ]);
+        DB::table('tracks')->insert([
+            'id' => 8,
+            'user_id' => 1,
+            'album_id' => 5,
+            'album_index' => 1,
+            'title' => "Platform 9",
+            'duration' => 251,
+            'path' => "./audio/test/tracks/oneeva_platform_9.mp3"
+        ]);
 
         // <---- ARTIST - TRACK PIVOT ---->
         DB::table('artist_track')->insert([
@@ -229,6 +263,11 @@ class DatabaseSeeder extends Seeder
         DB::table('artist_track')->insert([
             'track_id' => 7,
             'artist_id' => 4,
+            'priority' => 1
+        ]);
+        DB::table('artist_track')->insert([
+            'track_id' => 8,
+            'artist_id' => 5,
             'priority' => 1
         ]);
 
