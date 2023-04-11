@@ -21,6 +21,12 @@ class DatabaseSeeder extends Seeder
             'email' => "adam@ptmn.io",
             'password' => Hash::make("marigoldsbloom"),
         ]);
+        DB::table('users')->insert([
+            'id' => 2,
+            'name' => "iVapeWindex",
+            'email' => "8bitlizard@gmail.com",
+            'password' => Hash::make("Cooldude1"),
+        ]);
 
         // <---- ARTISTS ---->
         DB::table('artists')->insert([
@@ -47,6 +53,11 @@ class DatabaseSeeder extends Seeder
             'id' => 5,
             'user_id' => 1,
             'name' => "Oneeva"
+        ]);
+        DB::table('artists')->insert([
+            'id' => 6,
+            'user_id' => 2,
+            'name' => "Glass Animals"
         ]);
 
         // <---- ALBUMS ---->
@@ -90,6 +101,14 @@ class DatabaseSeeder extends Seeder
             'category' => "Single",
             'release_year' => "2017"
         ]);
+        DB::table('albums')->insert([
+            'id' => 6,
+            'user_id' => 2,
+            'album_cover_id' => 6,
+            'title' => "Gooey",
+            'category' => "Single",
+            'release_year' => "2014"
+        ]);
 
         // <---- ALBUM - ARTIST PIVOT ---->
         DB::table('album_artist')->insert([
@@ -115,6 +134,11 @@ class DatabaseSeeder extends Seeder
         DB::table('album_artist')->insert([
             'album_id' => 5,
             'artist_id' => 5,
+            'priority' => 1
+        ]);
+        DB::table('album_artist')->insert([
+            'album_id' => 6,
+            'artist_id' => 6,
             'priority' => 1
         ]);
 
@@ -153,6 +177,13 @@ class DatabaseSeeder extends Seeder
             'album_id' => 5,
             'color' => "195.192.197&16.29.41",
             'path' => "./img/test/covers/platform_9.jpeg"
+        ]);
+        DB::table('album_covers')->insert([
+            'id' => 6,
+            'user_id' => 2,
+            'album_id' => 6,
+            'color' => "72.36.33&214.143.36",
+            'path' => "./img/test/covers/gooey.jpeg"
         ]);
 
         // <---- TRACKS ---->
@@ -228,6 +259,16 @@ class DatabaseSeeder extends Seeder
             'duration' => 251,
             'path' => "./audio/test/tracks/oneeva_platform_9.mp3"
         ]);
+        DB::table('tracks')->insert([
+            'id' => 9,
+            'user_id' => 2,
+            'album_id' => 6,
+            'album_index' => 1,
+            'title' => "Gooey",
+            'duration' => 204,
+            'path' => "./audio/test/tracks/glass_animals_gooey.mp3"
+        ]);
+
 
         // <---- ARTIST - TRACK PIVOT ---->
         DB::table('artist_track')->insert([
@@ -268,6 +309,11 @@ class DatabaseSeeder extends Seeder
         DB::table('artist_track')->insert([
             'track_id' => 8,
             'artist_id' => 5,
+            'priority' => 1
+        ]);
+        DB::table('artist_track')->insert([
+            'track_id' => 9,
+            'artist_id' => 6,
             'priority' => 1
         ]);
 
