@@ -17,3 +17,19 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/playlist', function () {
+    return PlaylistResource::collection(Playlist::all());
+});
+
+Route::get('/playlist/{id}', function (string $id) {
+    return new PlaylistTracksResource(Playlist::find($id));
+});
+
+Route::get('/album', function () {
+    return AlbumResource::collection(Album::all());
+});
+
+Route::get('/album/{id}', function (string $id) {
+    return new AlbumTracksResource(Album::find($id));
+});
