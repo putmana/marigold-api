@@ -4,6 +4,8 @@ use App\Http\Resources\AlbumResource;
 use App\Http\Resources\AlbumTracksResource;
 use App\Http\Resources\PlaylistResource;
 use App\Http\Resources\PlaylistTracksResource;
+use App\Models\Album;
+use App\Models\Playlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
