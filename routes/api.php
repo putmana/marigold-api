@@ -24,17 +24,29 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::middleware(['auth:sanctum'])->get('/album', function (Request $request) {
+    return AlbumResource::collection($request->user()->albums);
+});
+
+Route::middleware(['auth:sanctum'])->get('/playlist', function (Request $request) {
+    return PlaylistResource::collection($request->user()->playlists);
+});
+
+/*
 Route::get('/playlist', function () {
     return PlaylistResource::collection(Playlist::all());
 });
+*/
 
 Route::get('/playlist/{id}', function (string $id) {
     return new PlaylistTracksResource(Playlist::find($id));
 });
 
+/*
 Route::get('/album', function () {
     return AlbumResource::collection(Album::all());
 });
+*/
 
 Route::get('/album/{id}', function (string $id) {
     return new AlbumTracksResource(Album::find($id));

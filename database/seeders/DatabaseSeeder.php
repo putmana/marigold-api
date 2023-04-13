@@ -148,42 +148,42 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1,
             'album_id' => 1,
             'color' => "195.162.66&49.35.29",
-            'path' => "/static/img/test/covers/eyelid_movies.jpeg"
+            'path' => "/public/img/test/covers/eyelid_movies.jpeg"
         ]);
         DB::table('album_covers')->insert([
             'id' => 2,
             'user_id' => 1,
             'album_id' => 2,
             'color' => "222.120.144&37.70.68",
-            'path' => "/static/img/test/covers/marigolds.jpeg"
+            'path' => "/public/img/test/covers/marigolds.jpeg"
         ]);
         DB::table('album_covers')->insert([
             'id' => 3,
             'user_id' => 1,
             'album_id' => 3,
             'color' => "192.175.171&74.41.58",
-            'path' => "/static/img/test/covers/two_time.jpeg"
+            'path' => "/public/img/test/covers/two_time.jpeg"
         ]);
         DB::table('album_covers')->insert([
             'id' => 4,
             'user_id' => 1,
             'album_id' => 4,
             'color' => "203.109.93&9.22.38",
-            'path' => "/static/img/test/covers/night_on_the_sun.jpeg"
+            'path' => "/public/img/test/covers/night_on_the_sun.jpeg"
         ]);
         DB::table('album_covers')->insert([
             'id' => 5,
             'user_id' => 1,
             'album_id' => 5,
             'color' => "195.192.197&16.29.41",
-            'path' => "/static/img/test/covers/platform_9.jpeg"
+            'path' => "/public/img/test/covers/platform_9.jpeg"
         ]);
         DB::table('album_covers')->insert([
             'id' => 6,
             'user_id' => 2,
             'album_id' => 6,
             'color' => "72.36.33&214.143.36",
-            'path' => "/static/img/test/covers/gooey.jpeg"
+            'path' => "/public/img/test/covers/gooey.jpeg"
         ]);
 
         // <---- TRACKS ---->
@@ -194,7 +194,7 @@ class DatabaseSeeder extends Seeder
             'album_index' => 1,
             'title' => "Mouthful of Diamonds",
             'duration' => 253,
-            'path' => "/static/audio/test/tracks/phantogram_mouthful_of_diamonds.mp3"
+            'path' => "/public/audio/test/tracks/phantogram_mouthful_of_diamonds.mp3"
         ]);
         DB::table('tracks')->insert([
             'id' => 2,
@@ -203,7 +203,7 @@ class DatabaseSeeder extends Seeder
             'album_index' => 2,
             'title' => "When I'm Small",
             'duration' => 249,
-            'path' => "/static/audio/test/tracks/phantogram_when_im_small.mp3"
+            'path' => "/public/audio/test/tracks/phantogram_when_im_small.mp3"
         ]);
         DB::table('tracks')->insert([
             'id' => 3,
@@ -212,7 +212,7 @@ class DatabaseSeeder extends Seeder
             'album_index' => 3,
             'title' => "Turn It Off",
             'duration' => 241,
-            'path' => "/static/audio/test/tracks/phantogram_turn_it_off.mp3"
+            'path' => "/public/audio/test/tracks/phantogram_turn_it_off.mp3"
         ]);
         DB::table('tracks')->insert([
             'id' => 4,
@@ -221,7 +221,7 @@ class DatabaseSeeder extends Seeder
             'album_index' => 4,
             'title' => "Running From the Cops",
             'duration' => 237,
-            'path' => "/static/audio/test/tracks/phantogram_running_from_the_cops.mp3"
+            'path' => "/public/audio/test/tracks/phantogram_running_from_the_cops.mp3"
         ]);
         DB::table('tracks')->insert([
             'id' => 5,
@@ -230,7 +230,7 @@ class DatabaseSeeder extends Seeder
             'album_index' => 1,
             'title' => "Marigolds",
             'duration' => 221,
-            'path' => "/static/audio/test/tracks/early_eyes_marigolds.mp3"
+            'path' => "/public/audio/test/tracks/early_eyes_marigolds.mp3"
         ]);
         DB::table('tracks')->insert([
             'id' => 6,
@@ -239,7 +239,7 @@ class DatabaseSeeder extends Seeder
             'album_index' => 1,
             'title' => "Two Time",
             'duration' => 138,
-            'path' => "/static/audio/test/tracks/jack_stauber_two_time.mp3"
+            'path' => "/public/audio/test/tracks/jack_stauber_two_time.mp3"
         ]);
         DB::table('tracks')->insert([
             'id' => 7,
@@ -248,7 +248,7 @@ class DatabaseSeeder extends Seeder
             'album_index' => 1,
             'title' => "Night on the Sun",
             'duration' => 561,
-            'path' => "/static/audio/test/tracks/modest_mouse_night_on_the_sun.mp3"
+            'path' => "/public/audio/test/tracks/modest_mouse_night_on_the_sun.mp3"
         ]);
         DB::table('tracks')->insert([
             'id' => 8,
@@ -257,7 +257,7 @@ class DatabaseSeeder extends Seeder
             'album_index' => 1,
             'title' => "Platform 9",
             'duration' => 251,
-            'path' => "/static/audio/test/tracks/oneeva_platform_9.mp3"
+            'path' => "/public/audio/test/tracks/oneeva_platform_9.mp3"
         ]);
         DB::table('tracks')->insert([
             'id' => 9,
@@ -266,7 +266,7 @@ class DatabaseSeeder extends Seeder
             'album_index' => 1,
             'title' => "Gooey",
             'duration' => 204,
-            'path' => "/static/audio/test/tracks/glass_animals_gooey.mp3"
+            'path' => "/public/audio/test/tracks/glass_animals_gooey.mp3"
         ]);
 
 
@@ -359,7 +359,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1,
             'playlist_id' => 1,
             'color' => "4.168.219&43.70.76",
-            'path' => "./img/mg/covers/favorites.png"
+            'path' => "/public/img/mg/covers/favorites.png"
         ]);
 
         
