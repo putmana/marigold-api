@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserController;
 use App\Http\Resources\AlbumResource;
 use App\Http\Resources\AlbumTracksResource;
+use App\Http\Resources\ArtistResource;
 use App\Http\Resources\PlaylistResource;
 use App\Http\Resources\PlaylistTracksResource;
 use App\Models\Album;
@@ -20,34 +24,48 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/v1/login', [LoginController::class, 'login']);
+Route::post('/v1/register', [RegisterController::class, 'store']);
 
-Route::middleware(['auth:sanctum'])->get('/album', function (Request $request) {
-    return AlbumResource::collection($request->user()->albums);
-});
+Route::middleware(['auth:sanctum'])->group(function() {
+    Route::prefix('v1')->group(function() {
 
-Route::middleware(['auth:sanctum'])->get('/playlist', function (Request $request) {
-    return PlaylistResource::collection($request->user()->playlists);
-});
+        Route::get('/verify', function(Request $request) {
+            return response()->json(['message' => 'VALID']);
+        });
 
-/*
-Route::get('/playlist', function () {
-    return PlaylistResource::collection(Playlist::all());
-});
-*/
+        // <---- USER ---->
+        Route::get('/user', function(Request $request) {
+            return $request->user();
+        });
 
-Route::get('/playlist/{id}', function (string $id) {
-    return new PlaylistTracksResource(Playlist::find($id));
-});
+        // <---- ALL USER PLAYLISTS ---->
+        Route::get('/playlist', function(Request $request) {
+            return PlaylistResource::collection($request->user()->playlists);
+        });
+        
+        // <---- ALL USER ALBUMS ---->
+        Route::get('/album', function(Request $request) {
+            return AlbumResource::collection($request->user()->albums);
+        });
 
-/*
-Route::get('/album', function () {
-    return AlbumResource::collection(Album::all());
-});
-*/
+        // <---- ALL USER ARTISTS ---->
+        Route::get('/artist', function(Request $request) {
+            return ArtistResource::collection($request->user()->artists);
+        });
+        
+        // <---- SPECIFIC USER PLAYLIST ---->
+        Route::get('/playlist/{id}', function (Request $request, string $id) {
+            return new PlaylistTracksResource($request->user()->playlists->find($id));
+        });
+        
+        // <---- SPECIFIC USER ALBUM ---->
+        Route::get('/album/{id}', function (Request $request, string $id) {
+            return new AlbumTracksResource($request->user()->albums->find($id));
+        });
 
-Route::get('/album/{id}', function (string $id) {
-    return new AlbumTracksResource(Album::find($id));
+        Route::get('/logout', function (Request $request) {
+            $request->user()->currentAccessToken()->delete();
+        });
+    });
 });

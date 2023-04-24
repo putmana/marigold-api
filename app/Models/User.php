@@ -58,4 +58,10 @@ class User extends Authenticatable
     public function artists(): HasMany {
         return $this->hasMany(Artist::class);
     }
+
+    public static $createRules = [
+        'name' => 'required|min:4|unique:users,name|max:255',
+        'email' => 'required|unique:users,email',
+        'password' => 'required|min:8|max:255'
+    ];
 }
