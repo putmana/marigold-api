@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
@@ -63,6 +64,8 @@ Route::middleware(['auth:sanctum'])->group(function() {
         Route::get('/album/{id}', function (Request $request, string $id) {
             return new AlbumTracksResource($request->user()->albums->find($id));
         });
+
+        Route::post('/album/{album}', [AlbumController::class, 'update']);
 
         Route::get('/logout', function (Request $request) {
             $request->user()->currentAccessToken()->delete();

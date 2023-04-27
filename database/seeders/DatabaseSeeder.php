@@ -39,11 +39,11 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1,
             'name' => "Early Eyes"
         ]);
-        DB::table('artists')->insert([
-            'id' => 3,
-            'user_id' => 1,
-            'name' => "Jack Stauber"
-        ]);
+        // DB::table('artists')->insert([
+        //     'id' => 3,
+        //     'user_id' => 1,
+        //     'name' => "Jack Stauber"
+        // ]);
         DB::table('artists')->insert([
             'id' => 4,
             'user_id' => 1,
@@ -77,14 +77,14 @@ class DatabaseSeeder extends Seeder
             'category' => "Single",
             'release_year' => "2020"
         ]);
-        DB::table('albums')->insert([
-            'id' => 3,
-            'user_id' => 1,
-            'album_cover_id' => 3,
-            'title' => "Two Time",
-            'category' => "Single",
-            'release_year' => "2017"
-        ]);
+        // DB::table('albums')->insert([
+        //     'id' => 3,
+        //     'user_id' => 1,
+        //     'album_cover_id' => 3,
+        //     'title' => "Two Time",
+        //     'category' => "Single",
+        //     'release_year' => "2017"
+        // ]);
         DB::table('albums')->insert([
             'id' => 4,
             'user_id' => 1,
@@ -121,11 +121,11 @@ class DatabaseSeeder extends Seeder
             'artist_id' => 2,
             'priority' => 1
         ]);
-        DB::table('album_artist')->insert([
-            'album_id' => 3,
-            'artist_id' => 3,
-            'priority' => 1
-        ]);
+        // DB::table('album_artist')->insert([
+        //     'album_id' => 3,
+        //     'artist_id' => 3,
+        //     'priority' => 1
+        // ]);
         DB::table('album_artist')->insert([
             'album_id' => 4,
             'artist_id' => 4,
@@ -157,13 +157,13 @@ class DatabaseSeeder extends Seeder
             'color' => "222.120.144&37.70.68",
             'path' => "/public/img/test/covers/marigolds.jpeg"
         ]);
-        DB::table('album_covers')->insert([
-            'id' => 3,
-            'user_id' => 1,
-            'album_id' => 3,
-            'color' => "192.175.171&74.41.58",
-            'path' => "/public/img/test/covers/two_time.jpeg"
-        ]);
+        // DB::table('album_covers')->insert([
+        //     'id' => 3,
+        //     'user_id' => 1,
+        //     'album_id' => 3,
+        //     'color' => "192.175.171&74.41.58",
+        //     'path' => "/public/img/test/covers/two_time.jpeg"
+        // ]);
         DB::table('album_covers')->insert([
             'id' => 4,
             'user_id' => 1,
@@ -232,15 +232,16 @@ class DatabaseSeeder extends Seeder
             'duration' => 221,
             'path' => "/public/audio/test/tracks/early_eyes_marigolds.mp3"
         ]);
-        DB::table('tracks')->insert([
-            'id' => 6,
-            'user_id' => 1,
-            'album_id' => 3,
-            'album_index' => 1,
-            'title' => "Two Time",
-            'duration' => 138,
-            'path' => "/public/audio/test/tracks/jack_stauber_two_time.mp3"
-        ]);
+        
+        // DB::table('tracks')->insert([
+        //     'id' => 6,
+        //     'user_id' => 1,
+        //     'album_id' => 3,
+        //     'album_index' => 1,
+        //     'title' => "Two Time",
+        //     'duration' => 138,
+        //     'path' => "/public/audio/test/tracks/jack_stauber_two_time.mp3"
+        // ]);
         DB::table('tracks')->insert([
             'id' => 7,
             'user_id' => 1,
@@ -296,11 +297,11 @@ class DatabaseSeeder extends Seeder
             'artist_id' => 2,
             'priority' => 1
         ]);
-        DB::table('artist_track')->insert([
-            'track_id' => 6,
-            'artist_id' => 3,
-            'priority' => 1
-        ]);
+        // DB::table('artist_track')->insert([
+        //     'track_id' => 6,
+        //     'artist_id' => 3,
+        //     'priority' => 1
+        // ]);
         DB::table('artist_track')->insert([
             'track_id' => 7,
             'artist_id' => 4,
@@ -342,11 +343,11 @@ class DatabaseSeeder extends Seeder
             'playlist_id' => 1,
             'position' => 3
         ]);
-        DB::table('playlist_track')->insert([
-            'track_id' => 6,
-            'playlist_id' => 1,
-            'position' => 4
-        ]);
+        // DB::table('playlist_track')->insert([
+        //     'track_id' => 6,
+        //     'playlist_id' => 1,
+        //     'position' => 4
+        // ]);
         DB::table('playlist_track')->insert([
             'track_id' => 7,
             'playlist_id' => 1,

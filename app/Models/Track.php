@@ -8,8 +8,17 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Track extends Model
-{
+{  
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'duration',
+        'path',
+        'user_id',
+        'album_id',
+        'album_index'
+    ];
 
     public function user(): BelongsTo {
         return $this->belongsTo(User::class);
