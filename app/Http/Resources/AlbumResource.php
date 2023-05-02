@@ -15,15 +15,20 @@ class AlbumResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'type' => 'album',
             'id' => $this->id,
-            'title' => $this->title,
-            'artists' => ArtistResource::collection($this->artists),
-            'category' => $this->category,
-            'year' => $this->release_year,
-            'cover' => [
-                'path' => $this->cover->path,
-                'color' => $this->cover->color,
+            'attributes' => [
+                'title' => $this->title,
+                'category' => $this->category,
+                'year' => $this->release_year,
+                'cover' => [
+                    'path' => $this->cover->path,
+                    'color' => $this->cover->color,
+                ],
             ],
+            'relationships' => [
+                'artists' => ArtistResource::collection($this->artists)
+            ]
         ];
     }
 }

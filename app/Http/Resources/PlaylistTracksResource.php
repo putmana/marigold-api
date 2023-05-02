@@ -15,8 +15,20 @@ class PlaylistTracksResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'info' => new PlaylistResource($this),
-            'tracks' => TrackResource::collection($this->tracks)
+            'type' => 'playlistTracks',
+            'id' => $this->id,
+            'attributes' => [
+                'title' => $this->title,
+                'username' => $this->user->name,
+                'description' => $this->description,
+                'cover' => [
+                    'path' => $this->cover->path,
+                    'color' => $this->cover->color,
+                ],
+            ],
+            'relationships' => [
+                'tracks' => TrackResource::collection($this->tracks)
+            ]
         ];
     }
 }

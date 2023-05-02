@@ -15,8 +15,21 @@ class AlbumTracksResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'info' => new AlbumResource($this),
-            'tracks' => TrackResource::collection($this->tracks)
+            'type' => 'albumTracks',
+            'id' => $this->id,
+            'attributes' => [
+                'title' => $this->title,
+                'category' => $this->category,
+                'year' => $this->release_year,
+                'cover' => [
+                    'path' => $this->cover->path,
+                    'color' => $this->cover->color
+                ],
+            ],
+            'relationships' => [
+                'artists' => ArtistResource::collection($this->artists),
+                'tracks' => TrackResource::collection($this->tracks)
+            ]
         ];
     }
 }
