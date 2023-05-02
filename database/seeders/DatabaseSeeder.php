@@ -109,6 +109,14 @@ class DatabaseSeeder extends Seeder
             'category' => "Single",
             'release_year' => "2014"
         ]);
+        DB::table('albums')->insert([
+            'id' => 7,
+            'user_id' => 1,
+            'album_cover_id' => 7,
+            'title' => "Sunbathing",
+            'category' => "EP",
+            'release_year' => "2020"
+        ]);
 
         // <---- ALBUM - ARTIST PIVOT ---->
         DB::table('album_artist')->insert([
@@ -139,6 +147,11 @@ class DatabaseSeeder extends Seeder
         DB::table('album_artist')->insert([
             'album_id' => 6,
             'artist_id' => 6,
+            'priority' => 1
+        ]);
+        DB::table('album_artist')->insert([
+            'album_id' => 7,
+            'artist_id' => 2,
             'priority' => 1
         ]);
 
@@ -184,6 +197,13 @@ class DatabaseSeeder extends Seeder
             'album_id' => 6,
             'color' => "72.36.33&214.143.36",
             'path' => "/public/img/test/covers/gooey.jpeg"
+        ]);
+        DB::table('album_covers')->insert([
+            'id' => 7,
+            'user_id' => 1,
+            'album_id' => 7,
+            'color' => "242.242.207&26.80.90",
+            'path' => "/public/img/test/covers/sunbathing.jpeg"
         ]);
 
         // <---- TRACKS ---->
@@ -269,6 +289,15 @@ class DatabaseSeeder extends Seeder
             'duration' => 204,
             'path' => "/public/audio/test/tracks/glass_animals_gooey.mp3"
         ]);
+        DB::table('tracks')->insert([
+            'id' => 10,
+            'user_id' => 1,
+            'album_id' => 7,
+            'album_index' => 1,
+            'title' => "Wander",
+            'duration' => 194,
+            'path' => "/public/audio/test/tracks/early_eyes_wander.mp3"
+        ]);
 
 
         // <---- ARTIST - TRACK PIVOT ---->
@@ -315,6 +344,11 @@ class DatabaseSeeder extends Seeder
         DB::table('artist_track')->insert([
             'track_id' => 9,
             'artist_id' => 6,
+            'priority' => 1
+        ]);
+        DB::table('artist_track')->insert([
+            'track_id' => 10,
+            'artist_id' => 2,
             'priority' => 1
         ]);
 
