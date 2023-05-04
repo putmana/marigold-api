@@ -37,9 +37,7 @@ Route::middleware(['auth:sanctum'])->group(function() {
         });
 
         // <---- USER ---->
-        Route::get('/user', function(Request $request) {
-            return $request->user();
-        });
+        Route::get('/user', [UserController::class, 'show']);
 
         // <--- ALBUM --->
         Route::get('/album', [AlbumController::class, 'index']);
