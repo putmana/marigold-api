@@ -4,18 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAlbumRequest;
 use App\Http\Requests\UpdateAlbumRequest;
+use App\Http\Resources\AlbumResource;
+use App\Http\Resources\AlbumTracksResource;
 use App\Models\Album;
 use App\Models\Artist;
 use App\Models\Track;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class AlbumController extends Controller
 {
+    public function index() {
+        return AlbumResource::collection(Auth::user()->albums);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreAlbumRequest $request)
     {
-        //
+        
     }
 
     /**
@@ -23,7 +31,11 @@ class AlbumController extends Controller
      */
     public function show(Album $album)
     {
-        //
+        if (Gate::allows('access-album', $album)) {
+            return new AlbumTracksResource($album);
+        } else {
+            abort(403);
+        }
     }
 
     /**
@@ -46,7 +58,7 @@ class AlbumController extends Controller
 
         foreach ($newTracks as $new) {
             $track = Track::create([
-                'user_id' => $request->user()->id,
+                'user_id' => Auth::user()->id,
                 'album_id'=> $album->id,
                 'album_index' => 5,
                 'title' => $new['title'],
@@ -61,7 +73,7 @@ class AlbumController extends Controller
             }
 
             $track->album()->associate($album->id);
-            $track->user()->associate($request->user()->id);
+            $track->user()->associate(Auth::user()->id);
 
             $track->save();
         }

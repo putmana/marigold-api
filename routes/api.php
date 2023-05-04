@@ -46,9 +46,17 @@ Route::middleware(['auth:sanctum'])->group(function() {
         });
         
         // <---- ALL USER ALBUMS ---->
-        Route::get('/album', function(Request $request) {
-            return AlbumResource::collection($request->user()->albums);
-        });
+        // Route::get('/album', function(Request $request) {
+            
+        //     return AlbumResource::collection($request->user()->albums);
+        // });
+
+        Route::get('/album', [AlbumController::class, 'index']);
+
+        Route::get('/album/{album}', [AlbumController::class, 'show']);
+
+        Route::post('/album/{album}', [AlbumController::class, 'update']);
+
 
         // <---- ALL USER ARTISTS ---->
         Route::get('/artist', function(Request $request) {
@@ -60,12 +68,11 @@ Route::middleware(['auth:sanctum'])->group(function() {
             return new PlaylistTracksResource($request->user()->playlists->find($id));
         });
         
-        // <---- SPECIFIC USER ALBUM ---->
-        Route::get('/album/{id}', function (Request $request, string $id) {
-            return new AlbumTracksResource($request->user()->albums->find($id));
-        });
+        // // <---- SPECIFIC USER ALBUM ---->
+        // Route::get('/album/{id}', function (Request $request, string $id) {
+        //     return new AlbumTracksResource($request->user()->albums->find($id));
+        // });
 
-        Route::post('/album/{album}', [AlbumController::class, 'update']);
 
         Route::get('/logout', function (Request $request) {
             $request->user()->currentAccessToken()->delete();
