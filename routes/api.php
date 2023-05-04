@@ -50,10 +50,8 @@ Route::middleware(['auth:sanctum'])->group(function() {
         Route::get('/playlist', [PlaylistController::class, 'index']);
         Route::get('/playlist/{playlist}', [PlaylistController::class, 'show']);
 
-        // <---- ALL USER ARTISTS ---->
-        Route::get('/artist', function(Request $request) {
-            return ArtistResource::collection($request->user()->artists);
-        });
+        // <---- ARTIST ---->
+        Route::get('/artist', [ArtistController::class, 'index']);
 
         Route::get('/logout', function (Request $request) {
             $request->user()->currentAccessToken()->delete();

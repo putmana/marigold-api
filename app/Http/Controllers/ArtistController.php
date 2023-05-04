@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreArtistRequest;
 use App\Http\Requests\UpdateArtistRequest;
+use App\Http\Resources\ArtistResource;
 use App\Models\Artist;
+use Illuminate\Support\Facades\Auth;
 
 class ArtistController extends Controller
 {
@@ -13,15 +15,7 @@ class ArtistController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return ArtistResource::collection(Auth::user()->artists);
     }
 
     /**
@@ -36,14 +30,6 @@ class ArtistController extends Controller
      * Display the specified resource.
      */
     public function show(Artist $artist)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Artist $artist)
     {
         //
     }
