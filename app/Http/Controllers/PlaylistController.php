@@ -7,17 +7,34 @@ use App\Http\Requests\UpdatePlaylistRequest;
 use App\Http\Resources\PlaylistResource;
 use App\Http\Resources\PlaylistTracksResource;
 use App\Models\Playlist;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class PlaylistController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
-        return PlaylistResource::collection(Auth::user()->playlists);
+        $query = Auth::user()->playlists();
+
+        if ($request->input('sort')) {
+            $cols = explode(',', $request->input('sort'));
+
+            foreach($cols as $col) {
+                if (substr($col, 0, 1) == "-") {
+                    $query = $query->orderBy(ltrim($col, '-'), 'desc');
+                } else {
+                    $query = $query->orderBy(ltrim($col), 'asc');
+                }
+            }
+        }
+
+        if ($request->input('page')) {
+            return PlaylistResource::collection($query->paginate(2));
+        }
+
+        return PlaylistResource::collection($query->get());
+        
     }
 
     /**
