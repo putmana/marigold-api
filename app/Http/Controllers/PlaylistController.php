@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePlaylistRequest;
 use App\Http\Requests\UpdatePlaylistRequest;
+use App\Http\Resources\PlaylistResource;
+use App\Http\Resources\PlaylistTracksResource;
 use App\Models\Playlist;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class PlaylistController extends Controller
 {
@@ -13,18 +17,7 @@ class PlaylistController extends Controller
      */
     public function index()
     {
-        $playlists = Playlist::all();
-        return response()->json([
-            $playlists
-        ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return PlaylistResource::collection(Auth::user()->playlists);
     }
 
     /**
@@ -40,15 +33,11 @@ class PlaylistController extends Controller
      */
     public function show(Playlist $playlist)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Playlist $playlist)
-    {
-        //
+        if (Gate::allows('access-playlist', $playlist)) {
+            return new PlaylistTracksResource($playlist);
+        } else {
+            abort(403);
+        }
     }
 
     /**

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
 use App\Http\Resources\AlbumResource;
@@ -40,39 +41,19 @@ Route::middleware(['auth:sanctum'])->group(function() {
             return $request->user();
         });
 
-        // <---- ALL USER PLAYLISTS ---->
-        Route::get('/playlist', function(Request $request) {
-            return PlaylistResource::collection($request->user()->playlists);
-        });
-        
-        // <---- ALL USER ALBUMS ---->
-        // Route::get('/album', function(Request $request) {
-            
-        //     return AlbumResource::collection($request->user()->albums);
-        // });
-
+        // <--- ALBUM --->
         Route::get('/album', [AlbumController::class, 'index']);
-
         Route::get('/album/{album}', [AlbumController::class, 'show']);
-
         Route::post('/album/{album}', [AlbumController::class, 'update']);
 
+        // <--- PLAYLIST --->
+        Route::get('/playlist', [PlaylistController::class, 'index']);
+        Route::get('/playlist/{playlist}', [PlaylistController::class, 'show']);
 
         // <---- ALL USER ARTISTS ---->
         Route::get('/artist', function(Request $request) {
             return ArtistResource::collection($request->user()->artists);
         });
-        
-        // <---- SPECIFIC USER PLAYLIST ---->
-        Route::get('/playlist/{id}', function (Request $request, string $id) {
-            return new PlaylistTracksResource($request->user()->playlists->find($id));
-        });
-        
-        // // <---- SPECIFIC USER ALBUM ---->
-        // Route::get('/album/{id}', function (Request $request, string $id) {
-        //     return new AlbumTracksResource($request->user()->albums->find($id));
-        // });
-
 
         Route::get('/logout', function (Request $request) {
             $request->user()->currentAccessToken()->delete();
