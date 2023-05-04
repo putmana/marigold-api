@@ -7,15 +7,34 @@ use App\Http\Requests\UpdateAlbumRequest;
 use App\Http\Resources\AlbumResource;
 use App\Http\Resources\AlbumTracksResource;
 use App\Models\Album;
-use App\Models\Artist;
 use App\Models\Track;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class AlbumController extends Controller
 {
-    public function index() {
-        return AlbumResource::collection(Auth::user()->albums);
+    public function index(Request $request) {
+        $query = Auth::user()->albums();
+
+        if ($request->input('sort')) {
+            $cols = explode(',', $request->input('sort'));
+
+            foreach($cols as $col) {
+                if (substr($col, 0, 1) == "-") {
+                    $query = $query->orderBy(ltrim($col, '-'), 'desc');
+                } else {
+                    $query = $query->orderBy(ltrim($col), 'asc');
+                }
+            }
+        }
+
+        if ($request->input('page')) {
+            return AlbumResource::collection($query->paginate(2));
+        }
+
+        return AlbumResource::collection($query->get());
+        
     }
 
     /**

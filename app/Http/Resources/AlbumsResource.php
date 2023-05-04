@@ -13,7 +13,13 @@ class AlbumsResource extends JsonResource
      * @return array<string, mixed>
      */
     public function toArray(Request $request): array
-    {
+    {   
+        if ($request->input('page')) {
+            return [
+                'data' => AlbumResource::collection($request->user()->albums()->paginate(2))
+            ];
+        }
+
         return [
             'data' => AlbumResource::collection($request->user()->albums)
         ];
