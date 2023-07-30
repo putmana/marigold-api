@@ -17,15 +17,15 @@ class DatabaseSeeder extends Seeder
         // <---- USERS ---->
         DB::table('users')->insert([
             'id' => 1,
-            'name' => "tagetes",
-            'email' => "adam@ptmn.io",
-            'password' => Hash::make("marigoldsbloom"),
+            'name' => "Demo",
+            'email' => "demo@ptmn.io",
+            'password' => Hash::make("password"),
         ]);
         DB::table('users')->insert([
             'id' => 2,
-            'name' => "iVapeWindex",
-            'email' => "8bitlizard@gmail.com",
-            'password' => Hash::make("Cooldude1"),
+            'name' => "Demo2",
+            'email' => "demo2@ptmn.io",
+            'password' => Hash::make("password"),
         ]);
 
         // <---- ARTISTS ---->
